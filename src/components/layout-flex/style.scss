@@ -1,0 +1,16 @@
+.LayoutFlex {
+  display: flex;
+  padding: 20px;
+}
+
+.LayoutFlex_start {
+  justify-content: flex-start;
+}
+
+.LayoutFlex_end {
+  justify-content: flex-end;
+}
+
+.LayoutFlex_between {
+  justify-content: space-between;
+}

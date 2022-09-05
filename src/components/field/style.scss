@@ -1,0 +1,12 @@
+.Field {
+  margin-bottom: 20px;
+
+  &__error {
+    color: #f81e1e;
+    padding: 10px 0 0;
+  }
+}
+
+.Field label {
+  font-weight: 700;
+}
