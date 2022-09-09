@@ -1,0 +1,32 @@
+.FlexContainer {
+  display: flex;
+}
+
+.FlexContainer_column {
+  flex-direction: column;
+}
+
+.FlexContainer_row {
+  flex-direction: row;
+}
+
+.FlexContainer_center {
+  align-items: center;
+  justify-content: center;
+}
+
+.FlexContainer_row-start {
+  justify-content: flex-start;
+}
+
+.FlexContainer_row-end {
+  justify-content: flex-end;
+}
+
+.FlexContainer_col-start {
+  align-items: flex-start;
+}
+
+.FlexContainer_col-end {
+  align-items: flex-end;
+}

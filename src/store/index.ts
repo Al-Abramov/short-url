@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import { TypedUseSelectorHook } from 'react-redux';
 import userReducer from './user-slice';
+import statisticsReducer from './statistics-slice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
+    statistics: statisticsReducer,
   },
 });
 

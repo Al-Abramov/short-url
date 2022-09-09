@@ -2,16 +2,16 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Field } from '../../field';
 import { Input } from '../../input';
-import { FormField } from '../form.interface';
+import { RegFormField } from '../reg-form.interface';
 import { RegisterProps } from './register-props.interface';
 import './style.scss';
 
 export const RegistrationForm: React.FC<RegisterProps> = (props) => {
-  const { register, handleSubmit, reset } = useForm<FormField>({
+  const { register, handleSubmit, reset } = useForm<RegFormField>({
     mode: 'onSubmit',
   });
 
-  const onSubmit: SubmitHandler<FormField> = (data) => {
+  const onSubmit: SubmitHandler<RegFormField> = (data) => {
     props.onRegister(data);
     reset();
   };

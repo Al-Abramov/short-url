@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../utils/cookie';
+import { Loader } from '../loader';
 import { IRequireAuth } from './Require-auth.interface';
 
 export const RequireAuth = ({ children }: IRequireAuth) => {
@@ -13,7 +14,7 @@ export const RequireAuth = ({ children }: IRequireAuth) => {
 
   useEffect(() => {
     checkAuth();
-  });
+  }, []);
 
-  return children;
+  return token ? children : <Loader isLoading={true} />;
 };
