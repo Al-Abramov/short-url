@@ -9,6 +9,9 @@ const initialState: StatisticsState = {
   info: [],
   currentShort: '',
   limit: 5,
+  offset: 0,
+  total: 0,
+  page: 0,
   isLoading: false,
 };
 
@@ -48,10 +51,31 @@ export const fetchStatInfo = createAsyncThunk<
   }
 });
 
+export const fetchAllStatInfo = createAsyncThunk<StatisticsInfo[], void, { rejectValue: IError }>(
+  'statistics/allInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      const resp = await getStatistics('asc_short', 0, 0);
+      return resp.data;
+    } catch (err) {
+      const error = err as AxiosError<IError>;
+
+      if (!error.response) {
+        throw err;
+      }
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const statisticsSlice = createSlice({
   name: 'statistics',
   initialState,
-  reducers: {},
+  reducers: {
+    setOffset(state, action) {
+      state.offset = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchStatInfo.pending, (state) => {
@@ -73,8 +97,21 @@ const statisticsSlice = createSlice({
       })
       .addCase(fetchCreateLink.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(fetchAllStatInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllStatInfo.fulfilled, (state, action) => {
+        const info = action.payload;
+        state.total = info.length;
+        state.isLoading = false;
+      })
+      .addCase(fetchAllStatInfo.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });
+
+export const { setOffset } = statisticsSlice.actions;
 
 export default statisticsSlice.reducer;

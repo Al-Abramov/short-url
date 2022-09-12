@@ -3,6 +3,9 @@ export interface StatisticsState {
   limit: number;
   currentShort: string;
   isLoading: boolean;
+  offset: number;
+  total: number;
+  page: number;
 }
 
 export interface StatisticsInfo {

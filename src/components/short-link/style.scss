@@ -6,7 +6,12 @@
   margin-top: 20px;
 }
 
-.ShortLink span:first-child {
+.ShortLink__content {
+  color: #0087E9;
+  cursor: pointer;
+}
+
+.ShortLink__title {
   font-weight: 700;
-  margin-right: 15px;
+  margin-right: 10px;
 }

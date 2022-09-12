@@ -4,7 +4,10 @@ import { StatisticsInfo } from '../../store/statistics-slice/statistics.interfac
 export interface TableProps {
   columns: Column<StatisticsInfo>[];
   data: StatisticsInfo[];
-  sorting: (id: string) => void;
+  total: number;
+  limit: number;
+  sorting: (id: string, offset: number) => void;
+  changePage: (order: string, offset: number) => void;
 }
 
 export interface IColumn {

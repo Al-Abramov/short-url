@@ -1,16 +1,17 @@
 import React, { useEffect, useMemo } from 'react';
+import { batch } from 'react-redux';
 import { Column } from 'react-table';
 import { FlexContainer } from '../../components/flex-container';
 import { Loader } from '../../components/loader';
 import { TableStatistics } from '../../components/table-statistics';
 import { CreateLinkContainer } from '../../containers/create-link';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { fetchStatInfo } from '../../store/statistics-slice';
+import { fetchAllStatInfo, fetchStatInfo, setOffset } from '../../store/statistics-slice';
 import { StatisticsInfo } from '../../store/statistics-slice/statistics.interface';
 
 export const MainPage = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, info, limit } = useAppSelector((state) => state.statistics);
+  const { isLoading, info, limit, offset, total } = useAppSelector((state) => state.statistics);
 
   const columns = useMemo<Column<StatisticsInfo>[]>(
     () => [
@@ -30,19 +31,35 @@ export const MainPage = () => {
     []
   );
 
-  const onSorting = (order: string) => {
-    dispatch(fetchStatInfo({ order, offset: 0, limit }));
+  const onSorting = (order: string, offset: number) => {
+    dispatch(setOffset(offset));
+    dispatch(fetchStatInfo({ order, offset, limit }));
+  };
+
+  const changePage = (order: string, offset: number) => {
+    dispatch(fetchStatInfo({ order, offset, limit }));
   };
 
   useEffect(() => {
-    dispatch(fetchStatInfo({ order: 'asc_short', offset: 0, limit }));
+    console.log('aaaaaaaaaaaaa');
+    batch(() => {
+      onSorting('asc_short', offset);
+      dispatch(fetchAllStatInfo());
+    });
   }, []);
 
   return (
     <FlexContainer location={'column'} flex={'col-start'}>
       <Loader isLoading={isLoading} />
       <CreateLinkContainer />
-      <TableStatistics columns={columns} data={info} sorting={onSorting} />
+      <TableStatistics
+        columns={columns}
+        data={info}
+        total={total}
+        limit={limit}
+        sorting={onSorting}
+        changePage={changePage}
+      />
     </FlexContainer>
   );
 };
