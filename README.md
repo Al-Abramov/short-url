@@ -1,5 +1,14 @@
 # Deploy: https://short-url-beige.vercel.app/
 
+## Done:
+- registration
+- authorization
+- create short link
+- copy short link on click
+- statistics table
+- sorting columns
+- pagination on srver side
+
 ## Technologies used in the app:
 - React
 - TypeScript
