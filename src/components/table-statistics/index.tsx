@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { StatisticsInfo } from '../../store/statistics-slice/statistics.interface';
 import { SortingRule, usePagination, useSortBy, useTable } from 'react-table';
 import { Box, Paper, TableContainer } from '@mui/material';
@@ -48,14 +48,14 @@ export const TableStatistics: React.FC<TableProps> = ({
     usePagination
   );
 
-  const onSorting = (sortBy: SortingRule<StatisticsInfo>[]) => {
+  const onSorting = useCallback((sortBy: SortingRule<StatisticsInfo>[]) => {
     const [first = 'asc_short'] = sortBy.map(({ desc, id }) => {
       const sortType = desc ? 'desc' : 'asc';
       return `${sortType}_${id}`;
     });
     const offset = getOffset();
     sorting(first, offset);
-  };
+  }, []);
 
   const getOffset = () => {
     return pageIndex * limit;
@@ -63,7 +63,7 @@ export const TableStatistics: React.FC<TableProps> = ({
 
   useEffect(() => {
     onSorting(sortBy);
-  }, [sortBy, pageIndex]);
+  }, [sortBy, pageIndex, onSorting]);
 
   return (
     <Box sx={{ width: '100%', mt: 8 }}>
