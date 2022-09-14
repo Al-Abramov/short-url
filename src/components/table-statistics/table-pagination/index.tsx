@@ -2,7 +2,7 @@ import React from 'react';
 import { PaginationProps } from './pagination.interface';
 import './style.scss';
 
-const TablePagination: React.FC<PaginationProps> = ({
+export const TablePagination: React.FC<PaginationProps> = ({
   previousPage,
   nextPage,
   gotoPage,
@@ -45,5 +45,3 @@ const TablePagination: React.FC<PaginationProps> = ({
     </div>
   );
 };
-
-export default React.memo(TablePagination);

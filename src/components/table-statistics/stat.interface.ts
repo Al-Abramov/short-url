@@ -6,6 +6,7 @@ export interface TableProps {
   data: StatisticsInfo[];
   total: number;
   limit: number;
+  pageIndexQ: number;
   sorting: (id: string, offset: number) => void;
   changePage: (order: string, offset: number) => void;
 }

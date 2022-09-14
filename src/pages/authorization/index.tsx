@@ -17,7 +17,7 @@ export const Authorization = () => {
     async (data: UserData) => {
       try {
         await dispatch(fetchAuthorize(data)).unwrap();
-        navigate('/main');
+        navigate('/main?order=asc_short&offset=0&limit=5');
       } catch (error) {
         throw error;
       }

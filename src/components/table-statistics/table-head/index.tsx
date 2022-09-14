@@ -7,7 +7,7 @@ import '../style.scss';
 import { StatisticsInfo } from '../../../store/statistics-slice/statistics.interface';
 import { HeaderGroup } from 'react-table';
 
-const TableStatHead: React.FC<{ headerGroups: HeaderGroup<StatisticsInfo>[] }> = ({
+export const TableStatHead: React.FC<{ headerGroups: HeaderGroup<StatisticsInfo>[] }> = ({
   headerGroups,
 }) => {
   return (
@@ -39,5 +39,3 @@ const TableStatHead: React.FC<{ headerGroups: HeaderGroup<StatisticsInfo>[] }> =
     </TableHead>
   );
 };
-
-export default React.memo(TableStatHead);

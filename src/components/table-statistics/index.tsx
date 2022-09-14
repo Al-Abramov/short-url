@@ -6,11 +6,18 @@ import { Box, Paper, TableContainer } from '@mui/material';
 import Table from '@mui/material/Table';
 import './style.scss';
 import { TableProps } from './stat.interface';
-import TableStatHead from './table-head';
-import TableStatBody from './table-body';
-import TablePagination from './table-pagination';
+import { TableStatHead } from './table-head';
+import { TableStatBody } from './table-body';
+import { TablePagination } from './table-pagination';
 
-export const TableStatistics: React.FC<TableProps> = ({ columns, data, total, limit, sorting }) => {
+export const TableStatistics: React.FC<TableProps> = ({
+  columns,
+  data,
+  total,
+  limit,
+  pageIndexQ,
+  sorting,
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -29,8 +36,8 @@ export const TableStatistics: React.FC<TableProps> = ({ columns, data, total, li
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
-      pageCount: Math.round(total / limit),
+      initialState: { pageIndex: pageIndexQ },
+      pageCount: Math.ceil(total / limit),
       manualSortBy: true,
       manualPagination: true,
       autoResetSortBy: false,

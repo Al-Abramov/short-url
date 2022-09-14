@@ -12,7 +12,7 @@ export const Navigation: React.FC<NavigationProps> = ({ token }) => {
         </li>
         {token && (
           <li>
-            <Link to="main">Main</Link>
+            <Link to="main?order=asc_short&offset=0&limit=5">Main</Link>
           </li>
         )}
       </ul>

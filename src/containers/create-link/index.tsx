@@ -1,6 +1,6 @@
-import { CreateLinkForm } from '../../components/forms/link';
+import CreateLinkForm from '../../components/forms/link';
 import { LayoutFlex } from '../../components/layout-flex';
-import { ShortLink } from '../../components/short-link';
+import ShortLink from '../../components/short-link';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { fetchCreateLink } from '../../store/statistics-slice';
 

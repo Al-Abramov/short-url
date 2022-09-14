@@ -3,7 +3,7 @@ import { CopyToClipboard } from '../copy-to-clipboard';
 import { ShortLinkProps } from './short-link.interface';
 import './style.scss';
 
-export const ShortLink: React.FC<ShortLinkProps> = ({ short }) => {
+const ShortLink: React.FC<ShortLinkProps> = ({ short }) => {
   return (
     <div className="ShortLink">
       <span className="ShortLink__title">Short link:</span>
@@ -13,3 +13,5 @@ export const ShortLink: React.FC<ShortLinkProps> = ({ short }) => {
     </div>
   );
 };
+
+export default React.memo(ShortLink);

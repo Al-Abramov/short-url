@@ -78,6 +78,17 @@ const statisticsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchAllStatInfo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllStatInfo.fulfilled, (state, action) => {
+        const info = action.payload;
+        state.total = info.length;
+        state.isLoading = false;
+      })
+      .addCase(fetchAllStatInfo.rejected, (state) => {
+        state.isLoading = false;
+      })
       .addCase(fetchStatInfo.pending, (state) => {
         state.isLoading = true;
       })
@@ -96,17 +107,6 @@ const statisticsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchCreateLink.rejected, (state) => {
-        state.isLoading = false;
-      })
-      .addCase(fetchAllStatInfo.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(fetchAllStatInfo.fulfilled, (state, action) => {
-        const info = action.payload;
-        state.total = info.length;
-        state.isLoading = false;
-      })
-      .addCase(fetchAllStatInfo.rejected, (state) => {
         state.isLoading = false;
       });
   },

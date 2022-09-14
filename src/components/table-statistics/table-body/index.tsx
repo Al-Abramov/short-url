@@ -5,7 +5,11 @@ import '../style.scss';
 import { TableStatBodyProps } from './table-body.interface';
 import { CopyToClipboard } from '../../copy-to-clipboard';
 
-const TableStatBody: React.FC<TableStatBodyProps> = ({ getTableBodyProps, rows, prepareRow }) => {
+export const TableStatBody: React.FC<TableStatBodyProps> = ({
+  getTableBodyProps,
+  rows,
+  prepareRow,
+}) => {
   return (
     <TableBody {...getTableBodyProps}>
       {rows.map((row) => {
@@ -31,5 +35,3 @@ const TableStatBody: React.FC<TableStatBodyProps> = ({ getTableBodyProps, rows, 
     </TableBody>
   );
 };
-
-export default React.memo(TableStatBody);

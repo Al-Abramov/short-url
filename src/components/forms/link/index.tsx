@@ -5,7 +5,7 @@ import { Input } from '../../input';
 import { LinkFormField, LinkFormProps } from './link-form.interface';
 import './style.scss';
 
-export const CreateLinkForm: React.FC<LinkFormProps> = (props) => {
+const CreateLinkForm: React.FC<LinkFormProps> = (props) => {
   const { register, handleSubmit, reset } = useForm<LinkFormField>({
     mode: 'onSubmit',
   });
@@ -30,3 +30,5 @@ export const CreateLinkForm: React.FC<LinkFormProps> = (props) => {
     </form>
   );
 };
+
+export default React.memo(CreateLinkForm);
