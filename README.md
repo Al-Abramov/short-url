@@ -1,6 +1,15 @@
-# Getting Started with Create React App
-
 # Deploy: https://short-url-beige.vercel.app/
+
+## Technologies used in the app:
+- React
+- TypeScript
+- Redux toolkit
+- Sass
+## Libraries:
+- axios
+- React-table
+- Material UI
+- React router dom v6
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
